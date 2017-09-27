@@ -18,7 +18,7 @@ class MessageList extends Component {
 
 export default createFragmentContainer(MessageList, graphql`
   fragment MessageList_viewer on Viewer {
-    allMessages(last: 100, orderBy: createdAt_DESC) @connection(key: "MessageList_allMessages", filters: []) {
+    allMessages(last: 100, orderBy: createdAt_ASC) @connection(key: "MessageList_allMessages", filters: []) {
       edges {
         node {
           ...Message_message

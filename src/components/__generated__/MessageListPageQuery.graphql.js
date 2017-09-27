@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0e83388d77c9ee56ec7ffa8243e91fd8
+ * @relayHash 49d581b5d1c569c327ecb0737fd3d8fc
  */
 
 /* eslint-disable */
@@ -24,7 +24,7 @@ query MessageListPageQuery {
 }
 
 fragment MessageList_viewer on Viewer {
-  allMessages(last: 100, orderBy: createdAt_DESC) {
+  allMessages(last: 100, orderBy: createdAt_ASC) {
     edges {
       node {
         ...Message_message
@@ -121,7 +121,7 @@ const batch /*: ConcreteBatch*/ = {
                   {
                     "kind": "Literal",
                     "name": "orderBy",
-                    "value": "createdAt_DESC",
+                    "value": "createdAt_ASC",
                     "type": "MessageOrderBy"
                   }
                 ],
@@ -239,7 +239,7 @@ const batch /*: ConcreteBatch*/ = {
                     ]
                   }
                 ],
-                "storageKey": "allMessages{\"last\":100,\"orderBy\":\"createdAt_DESC\"}"
+                "storageKey": "allMessages{\"last\":100,\"orderBy\":\"createdAt_ASC\"}"
               },
               {
                 "kind": "LinkedHandle",
@@ -254,7 +254,7 @@ const batch /*: ConcreteBatch*/ = {
                   {
                     "kind": "Literal",
                     "name": "orderBy",
-                    "value": "createdAt_DESC",
+                    "value": "createdAt_ASC",
                     "type": "MessageOrderBy"
                   }
                 ],
@@ -270,7 +270,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query MessageListPageQuery {\n  viewer {\n    ...MessageList_viewer\n    id\n  }\n}\n\nfragment MessageList_viewer on Viewer {\n  allMessages(last: 100, orderBy: createdAt_DESC) {\n    edges {\n      node {\n        ...Message_message\n        id\n      }\n    }\n    ... on MessageConnection {\n      edges {\n        cursor\n        node {\n          __typename\n          id\n        }\n      }\n      pageInfo {\n        hasPreviousPage\n        startCursor\n      }\n    }\n  }\n}\n\nfragment Message_message on Message {\n  id\n  text\n}\n"
+  "text": "query MessageListPageQuery {\n  viewer {\n    ...MessageList_viewer\n    id\n  }\n}\n\nfragment MessageList_viewer on Viewer {\n  allMessages(last: 100, orderBy: createdAt_ASC) {\n    edges {\n      node {\n        ...Message_message\n        id\n      }\n    }\n    ... on MessageConnection {\n      edges {\n        cursor\n        node {\n          __typename\n          id\n        }\n      }\n      pageInfo {\n        hasPreviousPage\n        startCursor\n      }\n    }\n  }\n}\n\nfragment Message_message on Message {\n  id\n  text\n}\n"
 };
 
 module.exports = batch;
