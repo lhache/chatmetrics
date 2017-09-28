@@ -1,36 +1,46 @@
 import { commitMutation, graphql } from 'react-relay'
-import { ConnectionHandler } from 'relay-runtime'
+import {ConnectionHandler} from 'relay-runtime'
 import environment from '../Environment'
 
 const mutation = graphql`
   mutation CreateMessageMutation($input: CreateMessageInput!) {
     createMessage(input: $input) {
       message {
-        id
-        createdAt
         text
       }
     }
   }
 `
-export default (text, callback) => {
+
+export default (text, viewerId, callback) => {
   const variables = {
     input: {
-      text,
+      text: text,
       clientMutationId: ""
     },
   }
-
   commitMutation(
     environment,
     {
       mutation,
       variables,
-      // 6
-      onCompleted: () => {
-        callback()
-      },
       onError: err => console.error(err),
+      onCompleted: () => { callback() },
+      updater: (proxyStore) => {
+
+        const createdMessageField = proxyStore.getRootField('createMessage')
+        const createdMessage = createdMessageField.getLinkedRecord('message')
+        const viewerProxy = proxyStore.get('viewer-fixed')
+        const connection = ConnectionHandler.getConnection(viewerProxy, 'MessageList_allMessages')
+
+        // create an edge container the newly create node
+        // otherwise the store would have an empty node that you can't render
+        const voteEdge = ConnectionHandler.createEdge(proxyStore, connection, createdMessage, 'MessageEdge');
+
+        if (connection) {
+          ConnectionHandler.insertEdgeAfter(connection, voteEdge)
+        }
+      },
     },
   )
 }

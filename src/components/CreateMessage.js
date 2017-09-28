@@ -21,7 +21,7 @@ class CreateMessage extends Component {
         </div>
         <div
           className='button'
-          onClick={() => this._createMessage()}
+          onClick={() => this._createMessage(this.props.viewer.id)}
         >
           Submit
         </div>
@@ -30,9 +30,10 @@ class CreateMessage extends Component {
 
   }
 
-  _createMessage = () => {
+  _createMessage = (viewerId) => {
     const { text } = this.state
-    CreateMessageMutation(text, () => console.log(`Mutation completed`))
+    // set the input text empty on creation success
+    CreateMessageMutation(text, viewerId, () => this.setState({text: ''}))
   }
 
 }

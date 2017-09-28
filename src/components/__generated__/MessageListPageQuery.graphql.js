@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 49d581b5d1c569c327ecb0737fd3d8fc
+ * @relayHash 5459686f100e2c7d223d78fa9089c4bf
  */
 
 /* eslint-disable */
@@ -10,7 +10,9 @@
 /*::
 import type {ConcreteBatch} from 'relay-runtime';
 export type MessageListPageQueryResponse = {|
-  +viewer: {| |};
+  +viewer: {|
+    +id: string;
+  |};
 |};
 */
 
@@ -18,14 +20,16 @@ export type MessageListPageQueryResponse = {|
 /*
 query MessageListPageQuery {
   viewer {
-    ...MessageList_viewer
     id
+    ...MessageList_viewer
   }
 }
 
 fragment MessageList_viewer on Viewer {
+  id
   allMessages(last: 100, orderBy: createdAt_ASC) {
     edges {
+      cursor
       node {
         ...Message_message
         id
@@ -68,6 +72,13 @@ const batch /*: ConcreteBatch*/ = {
         "name": "viewer",
         "plural": false,
         "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "args": null,
+            "name": "id",
+            "storageKey": null
+          },
           {
             "kind": "FragmentSpread",
             "name": "MessageList_viewer",
@@ -138,6 +149,13 @@ const batch /*: ConcreteBatch*/ = {
                     "plural": true,
                     "selections": [
                       {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "cursor",
+                        "storageKey": null
+                      },
+                      {
                         "kind": "LinkedField",
                         "alias": null,
                         "args": null,
@@ -183,13 +201,6 @@ const batch /*: ConcreteBatch*/ = {
                         "name": "edges",
                         "plural": true,
                         "selections": [
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "args": null,
-                            "name": "cursor",
-                            "storageKey": null
-                          },
                           {
                             "kind": "LinkedField",
                             "alias": null,
@@ -270,7 +281,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query MessageListPageQuery {\n  viewer {\n    ...MessageList_viewer\n    id\n  }\n}\n\nfragment MessageList_viewer on Viewer {\n  allMessages(last: 100, orderBy: createdAt_ASC) {\n    edges {\n      node {\n        ...Message_message\n        id\n      }\n    }\n    ... on MessageConnection {\n      edges {\n        cursor\n        node {\n          __typename\n          id\n        }\n      }\n      pageInfo {\n        hasPreviousPage\n        startCursor\n      }\n    }\n  }\n}\n\nfragment Message_message on Message {\n  id\n  text\n}\n"
+  "text": "query MessageListPageQuery {\n  viewer {\n    id\n    ...MessageList_viewer\n  }\n}\n\nfragment MessageList_viewer on Viewer {\n  id\n  allMessages(last: 100, orderBy: createdAt_ASC) {\n    edges {\n      cursor\n      node {\n        ...Message_message\n        id\n      }\n    }\n    ... on MessageConnection {\n      edges {\n        cursor\n        node {\n          __typename\n          id\n        }\n      }\n      pageInfo {\n        hasPreviousPage\n        startCursor\n      }\n    }\n  }\n}\n\nfragment Message_message on Message {\n  id\n  text\n}\n"
 };
 
 module.exports = batch;

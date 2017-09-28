@@ -6,6 +6,7 @@ import MessageList from './MessageList'
 const MessageListPageQuery = graphql`
   query MessageListPageQuery {
     viewer {
+      id
       ...MessageList_viewer
     }
   }
@@ -21,7 +22,9 @@ class MessageListPage extends Component {
           if (error) {
             return <div>{error.message}</div>
           } else if (props) {
-            return <MessageList viewer={props.viewer} />
+            return <div>
+              <MessageList viewer={props.viewer} />
+            </div>
           }
           return <div>Loading</div>
         }}

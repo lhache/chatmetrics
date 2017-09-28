@@ -1,14 +1,10 @@
-const {
-  Environment,
-  Network,
-  RecordSource,
-  Store,
-} = require('relay-runtime')
+import { SubscriptionClient } from 'subscriptions-transport-ws'
+const { Environment, Network, RecordSource, Store } = require('relay-runtime')
 
 const store = new Store(new RecordSource())
 const graphCoolId = 'cj82u4haf0032011485kzmh02'
 
-const network = Network.create((operation, variables) => {
+const fetchQuery = (operation, variables) => {
   return fetch(`https://api.graph.cool/relay/v1/${graphCoolId}`, {
     method: 'POST',
     headers: {
@@ -22,11 +18,22 @@ const network = Network.create((operation, variables) => {
   }).then(response => {
     return response.json()
   })
-})
+}
+
+const setupSubscription = (config, variables, cacheConfig, observer) => {
+  const query = config.text
+
+  const subscriptionClient = new SubscriptionClient(`wss://subscriptions.graph.cool/v1/${graphCoolId}`, {reconnect: true})
+  subscriptionClient.subscribe({query, variables}, (error, result) => {
+    observer.onNext({data: result})
+  })
+}
+
+const network = Network.create(fetchQuery, setupSubscription)
 
 const environment = new Environment({
   network,
-  store,
+  store
 })
 
 export default environment

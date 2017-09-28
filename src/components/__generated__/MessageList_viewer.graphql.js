@@ -9,8 +9,10 @@
 /*::
 import type {ConcreteFragment} from 'relay-runtime';
 export type MessageList_viewer = {|
+  +id: string;
   +allMessages: {|
     +edges: ?$ReadOnlyArray<?{|
+      +cursor: string;
       +node: {| |};
     |}>;
   |};
@@ -36,6 +38,13 @@ const fragment /*: ConcreteFragment*/ = {
   "name": "MessageList_viewer",
   "selections": [
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "args": null,
+      "name": "id",
+      "storageKey": null
+    },
+    {
       "kind": "LinkedField",
       "alias": "allMessages",
       "args": null,
@@ -51,6 +60,13 @@ const fragment /*: ConcreteFragment*/ = {
           "name": "edges",
           "plural": true,
           "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "args": null,
+              "name": "cursor",
+              "storageKey": null
+            },
             {
               "kind": "LinkedField",
               "alias": null,
@@ -82,13 +98,6 @@ const fragment /*: ConcreteFragment*/ = {
               "name": "edges",
               "plural": true,
               "selections": [
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "cursor",
-                  "storageKey": null
-                },
                 {
                   "kind": "LinkedField",
                   "alias": null,

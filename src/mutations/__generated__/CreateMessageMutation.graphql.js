@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7c19a492b1990355f84f821bce43b283
+ * @relayHash 41d7ecf64925fb19dd76d3c9ff4f5677
  */
 
 /* eslint-disable */
@@ -18,8 +18,6 @@ export type CreateMessageMutationVariables = {|
 export type CreateMessageMutationResponse = {|
   +createMessage: ?{|
     +message: ?{|
-      +id: string;
-      +createdAt: any;
       +text: string;
     |};
   |};
@@ -33,9 +31,8 @@ mutation CreateMessageMutation(
 ) {
   createMessage(input: $input) {
     message {
-      id
-      createdAt
       text
+      id
     }
   }
 }
@@ -78,20 +75,6 @@ const batch /*: ConcreteBatch*/ = {
             "name": "message",
             "plural": false,
             "selections": [
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "id",
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "createdAt",
-                "storageKey": null
-              },
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -152,21 +135,14 @@ const batch /*: ConcreteBatch*/ = {
                 "kind": "ScalarField",
                 "alias": null,
                 "args": null,
-                "name": "id",
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "createdAt",
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
                 "name": "text",
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "id",
                 "storageKey": null
               }
             ],
@@ -177,7 +153,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "mutation CreateMessageMutation(\n  $input: CreateMessageInput!\n) {\n  createMessage(input: $input) {\n    message {\n      id\n      createdAt\n      text\n    }\n  }\n}\n"
+  "text": "mutation CreateMessageMutation(\n  $input: CreateMessageInput!\n) {\n  createMessage(input: $input) {\n    message {\n      text\n      id\n    }\n  }\n}\n"
 };
 
 module.exports = batch;
