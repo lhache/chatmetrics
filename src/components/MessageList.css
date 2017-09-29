@@ -1,0 +1,17 @@
+.MessageList {
+  display: flex;
+  flex-basis: 100%;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-height: 200px;
+  align-items: flex-end;
+  overflow-y: auto;
+  position: absolute;
+  bottom: 50px;
+  margin: 10px;
+}
+
+.MessageList-Counter {
+  padding: 5px;
+  text-align: right;
+}

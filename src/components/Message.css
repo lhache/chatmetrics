@@ -1,0 +1,21 @@
+.Message {
+}
+
+.Message * {
+  background-color: #fff;
+  border: 1px solid #bbb;
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  line-height: 2;
+}
+
+.Message-Text {
+  min-width: 200px;
+  text-align: right;
+}
+
+.Message-Delete {
+  cursor: pointer;
+}

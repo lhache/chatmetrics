@@ -1,0 +1,28 @@
+.CreateMessage {
+  display: flex;
+  flex-basis: 100%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.CreateMessage * {
+  color: #444;
+  background-color: white;
+  border: 1px solid #bbb;
+  line-height: 2;
+  border-radius: 4px;
+  font-size: 14px;
+  margin: 5px;
+  padding: 5px 10px;
+}
+
+.CreateMessage-Input {
+  flex-basis: 80%;
+  outline: none;
+}
+
+.CreateMessage-Button {
+  flex-basis: 20%;
+  text-align: center;
+}
