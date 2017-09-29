@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 41d7ecf64925fb19dd76d3c9ff4f5677
+ * @relayHash 7939949e40263d52393253b5f9a5b6d5
  */
 
 /* eslint-disable */
@@ -12,6 +12,7 @@ import type {ConcreteBatch} from 'relay-runtime';
 export type CreateMessageMutationVariables = {|
   input: {
     text: string;
+    createdAt: any;
     clientMutationId: string;
   };
 |};
@@ -19,6 +20,7 @@ export type CreateMessageMutationResponse = {|
   +createMessage: ?{|
     +message: ?{|
       +text: string;
+      +createdAt: any;
     |};
   |};
 |};
@@ -32,6 +34,7 @@ mutation CreateMessageMutation(
   createMessage(input: $input) {
     message {
       text
+      createdAt
       id
     }
   }
@@ -80,6 +83,13 @@ const batch /*: ConcreteBatch*/ = {
                 "alias": null,
                 "args": null,
                 "name": "text",
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "createdAt",
                 "storageKey": null
               }
             ],
@@ -142,6 +152,13 @@ const batch /*: ConcreteBatch*/ = {
                 "kind": "ScalarField",
                 "alias": null,
                 "args": null,
+                "name": "createdAt",
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
                 "name": "id",
                 "storageKey": null
               }
@@ -153,7 +170,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "mutation CreateMessageMutation(\n  $input: CreateMessageInput!\n) {\n  createMessage(input: $input) {\n    message {\n      text\n      id\n    }\n  }\n}\n"
+  "text": "mutation CreateMessageMutation(\n  $input: CreateMessageInput!\n) {\n  createMessage(input: $input) {\n    message {\n      text\n      createdAt\n      id\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

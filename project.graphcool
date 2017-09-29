@@ -25,3 +25,9 @@ type Message implements Node {
   updatedAt: DateTime!
   text: String!
 }
+
+input CreateMessageInput {
+  text: String!
+  createdAt: DateTime!
+  clientMutationId: String!
+}

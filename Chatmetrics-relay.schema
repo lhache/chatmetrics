@@ -16,10 +16,12 @@ type CreateFilePayload {
 
 input CreateMessage {
   text: String!
+  createdAt: DateTime!
 }
 
 input CreateMessageInput {
   text: String!
+  createdAt: DateTime!
   clientMutationId: String!
 }
 

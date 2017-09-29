@@ -16,7 +16,6 @@ type CreateFilePayload {
 
 input CreateMessage {
   text: String!
-  createdAt: DateTime!
 }
 
 input CreateMessageInput {

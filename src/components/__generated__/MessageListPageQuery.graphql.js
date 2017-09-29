@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5459686f100e2c7d223d78fa9089c4bf
+ * @relayHash 37f003b2b19486c814728b51958d4ca0
  */
 
 /* eslint-disable */
@@ -54,6 +54,7 @@ fragment MessageList_viewer on Viewer {
 fragment Message_message on Message {
   id
   text
+  createdAt
 }
 */
 
@@ -180,6 +181,13 @@ const batch /*: ConcreteBatch*/ = {
                                 "args": null,
                                 "name": "text",
                                 "storageKey": null
+                              },
+                              {
+                                "kind": "ScalarField",
+                                "alias": null,
+                                "args": null,
+                                "name": "createdAt",
+                                "storageKey": null
                               }
                             ]
                           }
@@ -281,7 +289,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query MessageListPageQuery {\n  viewer {\n    id\n    ...MessageList_viewer\n  }\n}\n\nfragment MessageList_viewer on Viewer {\n  id\n  allMessages(last: 100, orderBy: createdAt_ASC) {\n    edges {\n      cursor\n      node {\n        ...Message_message\n        id\n      }\n    }\n    ... on MessageConnection {\n      edges {\n        cursor\n        node {\n          __typename\n          id\n        }\n      }\n      pageInfo {\n        hasPreviousPage\n        startCursor\n      }\n    }\n  }\n}\n\nfragment Message_message on Message {\n  id\n  text\n}\n"
+  "text": "query MessageListPageQuery {\n  viewer {\n    id\n    ...MessageList_viewer\n  }\n}\n\nfragment MessageList_viewer on Viewer {\n  id\n  allMessages(last: 100, orderBy: createdAt_ASC) {\n    edges {\n      cursor\n      node {\n        ...Message_message\n        id\n      }\n    }\n    ... on MessageConnection {\n      edges {\n        cursor\n        node {\n          __typename\n          id\n        }\n      }\n      pageInfo {\n        hasPreviousPage\n        startCursor\n      }\n    }\n  }\n}\n\nfragment Message_message on Message {\n  id\n  text\n  createdAt\n}\n"
 };
 
 module.exports = batch;
