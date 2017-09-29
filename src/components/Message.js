@@ -11,7 +11,7 @@ class Message extends Component {
   }
 
   _formatDate = date => {
-    const dateFormat = "dd/mm/yyyy hh:MM"
+    const dateFormat = "dd/mm/yyyy HH:MM"
     return date ? dateformat(new Date(date), dateFormat): dateformat(new Date(), dateFormat)
   }
 
