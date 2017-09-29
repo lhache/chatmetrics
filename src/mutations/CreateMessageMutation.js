@@ -7,7 +7,6 @@ const mutation = graphql`
     createMessage(input: $input) {
       message {
         text
-        createdAt
       }
     }
   }
@@ -17,7 +16,6 @@ export default (text, viewerId, callback) => {
   const variables = {
     input: {
       text: text,
-      createdAt: new Date(),
       clientMutationId: ""
     },
   }

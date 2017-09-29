@@ -10,6 +10,11 @@ class Message extends Component {
     DeleteMessageMutation(this.props.message.id, null)
   }
 
+  _formatDate = date => {
+    const dateFormat = "dd/mm/yyyy hh:MM"
+    return date ? dateformat(new Date(date), dateFormat): dateformat(new Date(), dateFormat)
+  }
+
   render() {
     const { text, createdAt } = this.props.message
     return (
@@ -18,7 +23,7 @@ class Message extends Component {
           <div className="Message-Text">{text}</div>
           <button className="Message-Delete" onClick={this._handleDelete}>X</button>
         </div>
-        <div className="Message-CreatedAt">sent on {dateformat(new Date(createdAt), "dd/mm/yyyy hh:MM")}</div>
+        <div className="Message-CreatedAt">sent on {this._formatDate(createdAt)}</div>
       </div>
     )
   }
